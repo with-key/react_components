@@ -1,38 +1,31 @@
 import React, { useState } from "react";
-import Button from "./components/Button";
-import Input from "./components/Input";
+import { Button, GreenButton } from "./components/button";
+import Input from "./components/input/Input";
+import useInput from "./hooks/useInput";
 
 const App = () => {
-  const [value, setValue] = useState("");
-  console.log(value);
+  const { values, onChangeHandler } = useInput({
+    title: "",
+    body: "",
+  });
+
   return (
     <div>
-      {/* <Input
+      <Button></Button>
+      <Input
         ph="입력해주세요"
-        value={value}
+        value={values.title}
         type="text"
-        onChange={(e) => {
-          const { value } = e.target;
-          setValue(value);
-        }}
-      /> */}
-      <Button
-        variant="small"
-        onClick={() => {
-          console.log("클릭했다.");
-        }}
-        type="button"
-      >
-        전송하기
-      </Button>
-      <Button
-        variant="big"
-        onClick={() => {
-          console.log("전송하기 클릭했다.");
-        }}
-      >
-        취소하기
-      </Button>
+        name="title"
+        onChange={onChangeHandler}
+      />
+      <Input
+        ph="입력해주세요"
+        value={values.body}
+        type="text"
+        name="body"
+        onChange={onChangeHandler}
+      />
     </div>
   );
 };

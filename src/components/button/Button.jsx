@@ -16,6 +16,7 @@ const Button = ({ children, variant, ...restProps }) => {
       return smallStyle;
     }
   }
+  console.log(variant === "big" && bigStyle);
 
   return (
     <button style={selectVariant(variant)} {...restProps}>
