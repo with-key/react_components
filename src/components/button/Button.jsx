@@ -1,8 +1,19 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const PrimitiveButton = ({ children, ...rest }) => {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+const PrimitiveButton = ({ children, rightSlot, ...rest }) => {
+  return (
+    <StyledButton {...rest}>
+      {rightSlot ? (
+        <ButtonInner>
+          <div>{children}</div>
+          <div>{rightSlot}</div>
+        </ButtonInner>
+      ) : (
+        <div>{children}</div>
+      )}
+    </StyledButton>
+  );
 };
 
 const PrimaryButton = (props) => {
@@ -91,4 +102,11 @@ const StyledButton = styled.button`
       `;
     }
   }}
+`;
+
+const ButtonInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 `;

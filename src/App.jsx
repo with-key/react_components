@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "./components/button/Button";
+import { IconArrow, IconBell } from "./components/button/Icon";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <h1>Button</h1>
       <Flex gap={10}>
         <Button.Primary
+          rightSlot={<IconArrow color={"#000000"} />}
           size="large"
           outlined
           onClick={() => window.alert("버튼을 만들어보세요")}
@@ -22,6 +24,7 @@ const App = () => {
         <Button.Negative
           size="large"
           outlined
+          rightSlot={<IconBell />}
           onClick={() => console.log(window.prompt("어렵나요?"))}
         >
           Large Negative Button
@@ -36,7 +39,7 @@ const App = () => {
 export default App;
 
 const Flex = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: ${({ row = "row" }) => (row ? "row" : "column")};
   gap: ${({ gap }) => `${gap}px`};
 `;
