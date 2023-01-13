@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 
 const SelectContext = createContext({});
+
 /*--------------------------------------------------------*
  * Select Root
  *--------------------------------------------------------*/
-
 const SelectRoot = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("1");
@@ -87,6 +88,20 @@ const SelectOption = ({ children, value, ...rest }) => {
 };
 
 /*--------------------------------------------------------*
+ * Select Portal
+ *--------------------------------------------------------*/
+
+const SelectPortal = ({ children }) => {
+  const portalTarget = document.getElementById("portal-target");
+
+  if (!portalTarget) {
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, portalTarget);
+};
+
+/*--------------------------------------------------------*
  * Result
  *--------------------------------------------------------*/
 
@@ -94,5 +109,6 @@ const Root = SelectRoot;
 const Trigger = SelectTrigger;
 const List = SelectList;
 const Option = SelectOption;
+const Portal = SelectPortal;
 
-export { Root, Trigger, List, Option };
+export { Root, Trigger, List, Option, Portal };

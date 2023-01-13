@@ -1,17 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ReactDOM from "react-dom";
 import * as Select from "../components/select/Select";
-
-const Portal = ({ children }) => {
-  const portalTarget = document.getElementById("portal-target");
-
-  if (!portalTarget) {
-    return null;
-  }
-
-  return ReactDOM.createPortal(children, portalTarget);
-};
 
 const FeatureSelect = () => {
   return (
@@ -21,14 +10,14 @@ const FeatureSelect = () => {
         <div style={{ display: "flex", gap: "10px" }}>
           <Select.Root>
             <SelectTrigger>트리거</SelectTrigger>
-            <Portal>
+            <Select.Portal>
               <OverSelectList>
                 <SelectOption value="1">리액트</SelectOption>
                 <SelectOption value="2">자바</SelectOption>
                 <SelectOption value="3">스프링</SelectOption>
                 <SelectOption value="4">리액트네이티브</SelectOption>
               </OverSelectList>
-            </Portal>
+            </Select.Portal>
           </Select.Root>
 
           <Select.Root>
@@ -63,7 +52,7 @@ const OverSelectList = styled(Select.List)`
   background-color: #fff;
   width: 300px;
   position: absolute;
-  top: 760px;
+  top: 710px;
 `;
 
 const SelectList = styled(Select.List)`
@@ -99,10 +88,9 @@ const SelectOption = styled(Select.Option)`
 `;
 
 const Container = styled.div`
-  border: 1px solid red;
+  border: 3px solid #ddd;
   height: 200px;
   overflow: hidden;
-
   position: relative;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
