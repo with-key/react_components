@@ -71,6 +71,7 @@ const StyledOverlay = styled.div`
   height: 100vh;
   inset: 0;
   position: fixed;
+  opacity: 80%;
   background-color: #ddd;
 `;
 

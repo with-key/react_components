@@ -49,9 +49,12 @@ const App = () => {
               <Button.Primary>open modal</Button.Primary>
             </Modal.Trigger>
             <Modal.Portal>
-              <Modal.Overlay onClose />
+              <Modal.Overlay />
               <ModalContent>
-                <div>닫기와 확인 버튼이 모두 있는 모달이네요.</div>
+                <div>
+                  닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지
+                  않아요.
+                </div>
                 <ModalButtonSetter>
                   <Modal.Close asChild>
                     <Button.Negative>닫기</Button.Negative>
@@ -76,7 +79,11 @@ const App = () => {
             <Modal.Portal>
               <Modal.Overlay onClose />
               <MiniModalContent>
-                <div>닫기만 있는 모달이네요.</div>
+                <div>
+                  닫기 버튼 1개가 있고,
+                  <br />
+                  외부 영역을 누르면 모달이 닫혀요.
+                </div>
                 <ModalButtonSetterSecond>
                   <Modal.Close asChild>
                     <StyledModalClose>X</StyledModalClose>
