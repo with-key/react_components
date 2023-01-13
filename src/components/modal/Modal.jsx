@@ -45,7 +45,6 @@ const ModalTrigger = ({ children, asChild, ...rest }) => {
 
 const ModalPortal = ({ children }) => {
   const portalTarget = document.getElementById("portal-target");
-  console.log(portalTarget);
 
   if (!portalTarget) {
     return null;
