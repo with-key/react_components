@@ -4,7 +4,7 @@ import Button from "./components/button/Button";
 import { IconArrow, IconBell } from "./components/button/Icon";
 import Input from "./components/input/Input";
 import * as Modal from "./components/modal/Modal";
-import * as Select from "./components/select/Select";
+import Select from "./features/Select";
 
 const App = () => {
   return (
@@ -75,30 +75,19 @@ const App = () => {
             </Modal.Trigger>
             <Modal.Portal>
               <Modal.Overlay onClose />
-              <ModalContent>
+              <MiniModalContent>
                 <div>닫기만 있는 모달이네요.</div>
                 <ModalButtonSetterSecond>
                   <Modal.Close asChild>
-                    <Button.Negative>X</Button.Negative>
+                    <StyledModalClose>X</StyledModalClose>
                   </Modal.Close>
                 </ModalButtonSetterSecond>
-              </ModalContent>
+              </MiniModalContent>
             </Modal.Portal>
           </Modal.Root>
         </Flex>
       </div>
-      <div>
-        <h1>Select </h1>
-        <Select.Root>
-          <SelectTrigger>트리거</SelectTrigger>
-          <SelectList>
-            <SelectOption value="1">리액트</SelectOption>
-            <SelectOption value="2">자바</SelectOption>
-            <SelectOption value="3">스프링</SelectOption>
-            <SelectOption value="4">리액트네이티브</SelectOption>
-          </SelectList>
-        </Select.Root>
-      </div>
+      <Select></Select>
     </>
   );
 };
@@ -137,40 +126,25 @@ const ModalButtonSetterSecond = styled.div`
   right: 12px;
 `;
 
-const SelectTrigger = styled(Select.Trigger)`
+const StyledModalClose = styled.button`
   border: 1px solid #ddd;
+  width: 40px;
   height: 40px;
-  width: 300px;
-  background-color: #fff;
-  border-radius: 12px;
-`;
-
-const SelectList = styled(Select.List)`
-  border: 1px solid #eee;
-  border-radius: 12px;
-  width: 300px;
-  position: absolute;
-  top: 50px;
-`;
-
-const SelectOption = styled(Select.Option)`
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
-  height: 40px;
-
+  border-radius: 100%;
+  cursor: pointer;
   :hover {
-    background-color: #eee;
+    border: 1px solid #333;
   }
+`;
 
-  :first-child {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-
-  :last-child {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
+const MiniModalContent = styled(Modal.Content)`
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 24px;
+  background-color: #fff;
+  width: 300px;
+  height: 200px;
 `;
