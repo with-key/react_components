@@ -19,7 +19,7 @@ const FeatureInput = () => {
 
   return (
     <>
-      <h1>Price Format Input</h1>
+      <h1>Input</h1>
       <form onSubmit={onSubmitHandler}>
         <Stack gap={30}>
           <div>
