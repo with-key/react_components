@@ -1,20 +1,28 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const PrimitiveButton = ({ children, rightSlot, ...rest }) => {
+/*--------------------------------------------------------*
+ *  Primitive Button
+ *--------------------------------------------------------*/
+
+const PrimitiveButton = ({ children, rightSlot, ...restProps }) => {
   return (
-    <StyledButton {...rest}>
+    <StyledButton {...restProps}>
       {rightSlot ? (
         <ButtonInner>
-          <div>{children}</div>
-          <div>{rightSlot}</div>
+          <>{children}</>
+          <>{rightSlot}</>
         </ButtonInner>
       ) : (
-        <div>{children}</div>
+        <>{children}</>
       )}
     </StyledButton>
   );
 };
+
+/*--------------------------------------------------------*
+ * Primary Style
+ *--------------------------------------------------------*/
 
 const PrimaryButton = (props) => {
   return (
@@ -26,6 +34,10 @@ const PrimaryButton = (props) => {
     />
   );
 };
+
+/*--------------------------------------------------------*
+ * Negative Style
+ *--------------------------------------------------------*/
 
 const NegativeButton = (props) => {
   return (
@@ -41,14 +53,7 @@ const NegativeButton = (props) => {
 const Primary = PrimaryButton;
 const Negative = NegativeButton;
 
-const Button = Object.assign(
-  {},
-  {
-    Primary,
-    Negative,
-  }
-);
-
+const Button = { Negative, Primary };
 export default Button;
 
 const StyledButton = styled.button`

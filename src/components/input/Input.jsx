@@ -1,45 +1,77 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Input = () => {
+/**
+ * description : formattable input
+ * ========================================================
+ * DATE			AUTHOR 		NOTE
+ * --------------------------------------------------------
+ * 2023/01/15	 예상기	   최초 생성
+ */
+
+/*--------------------------------------------------------*
+ * Primitive Input
+ *--------------------------------------------------------*/
+
+const PrmitiveInput = ({ value, ...restProps }) => {
+  return (
+    <StyledInput {...restProps} value={value.format ?? value} type="text" />
+  );
+};
+
+/*--------------------------------------------------------*
+ * normal input
+ *--------------------------------------------------------*/
+
+const NormalInput = ({ getValues }) => {
+  const [value, setValue] = useState("");
+
+  const onChageHandler = (e) => {
+    const { value } = e.target;
+    setValue(e.target.value);
+    getValues(value);
+  };
+
+  return <PrmitiveInput onChange={onChageHandler} value={value} />;
+};
+
+/*--------------------------------------------------------*
+ * price format input
+ *--------------------------------------------------------*/
+
+const PriceFormatInput = ({ getValues }) => {
   const [value, setValue] = useState({
     raw: "0",
     format: "0",
   });
 
-  return (
-    <>
-      <StyledInput
-        type="text"
-        value={value.format}
-        onChange={({ target }) => {
-          const rex = /\D/g;
-          if (!rex.test(target.value.replaceAll(",", ""))) {
-            setValue((old) => ({
-              ...old,
-              raw: target.value.replaceAll(",", ""),
-              format: new Intl.NumberFormat().format(
-                target.value.replaceAll(",", "")
-              ),
-            }));
-          }
-        }}
-      />
-      <br />
-      <br />
-      <div>
-        <div>
-          <code>format: {value.format}</code>
-        </div>
-        <div>
-          <code>raw : {value.raw}</code>
-        </div>
-      </div>
-    </>
-  );
+  const onChageHandler = ({ target }) => {
+    const rex = /\D/g;
+
+    const raw = target.value.replaceAll(",", "");
+    const format = new Intl.NumberFormat().format(
+      target.value.replaceAll(",", "")
+    );
+
+    if (!rex.test(target.value.replaceAll(",", ""))) {
+      setValue((old) => ({
+        ...old,
+        raw,
+        format,
+      }));
+
+      getValues && getValues({ raw, format });
+    }
+  };
+
+  return <PrmitiveInput onChange={onChageHandler} value={value} />;
 };
 
-export default Input;
+const Price = PriceFormatInput;
+const Normal = NormalInput;
+
+export { Price, Normal };
+
 const StyledInput = styled.input`
   border: 1px solid #333333;
   height: 40px;
