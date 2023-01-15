@@ -52,7 +52,7 @@ const OverSelectList = styled(Select.List)`
   background-color: #fff;
   width: 300px;
   position: absolute;
-  top: 710px;
+  top: 650px;
 `;
 
 const SelectList = styled(Select.List)`
