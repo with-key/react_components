@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -81,7 +87,26 @@ const StyledOverlay = styled.div`
 
 const ModalContent = ({ children, ...rest }) => {
   const { open } = useContext(ModalContext);
-  return open ? <StyledContent {...rest}>{children}</StyledContent> : <></>;
+  const ref = useRef(null);
+
+  const clickHandler = () => {
+    if (ref) {
+      console.log(ref.current);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  }, []);
+
+  return open ? (
+    <StyledContent {...rest} ref={ref}>
+      {children}
+    </StyledContent>
+  ) : (
+    <></>
+  );
 };
 
 const StyledContent = styled.div`
